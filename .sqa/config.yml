@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.cdc.aggregator.shared-library:
+      branch: main
+      repo: https://github.com/cessda/cessda.cdc.aggregator.shared-library
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.shared-library git:
+        commands:
+        - /usr/bin/env sh .sqa/script.emerald_pensive_platypus.sh
+        container: qc.acc_raspberry_courageous_narwhal
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.shared-library find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.mist_stubborn_coyote.sh
+        container: qc.doc_echelon_dramatic_gull
+      github.com/cessda/cessda.cdc.aggregator.shared-library git:
+        commands:
+        - /usr/bin/env sh .sqa/script.peony_mysterious_wasp.sh
+        container: qc.doc_currant_compassionate_panda
+      github.com/cessda/cessda.cdc.aggregator.shared-library markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.reef_intuitive_manta.sh
+        container: qc.doc_marina_supportive_dugong
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.shared-library licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.ice_adaptable_goose.sh
+        container: qc.lic_cerise_fierce_chimpanzee
+  QC.Sec:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.shared-library bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.peony_compassionate_hummingbird.sh
+        container: qc.sec_sienna_wise_toad
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.shared-library flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.echelon_innocent_unicorn.sh
+        container: qc.sty_heather_restless_otter
+      github.com/cessda/cessda.cdc.aggregator.shared-library hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.clove_bold_python.sh
+        container: qc.sty_strawberry_reliable_falcon
+  QC.Uni:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.shared-library pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.clove_rational_griffin.sh
+        container: qc.uni_jade_flexible_porcupine
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.cdc.aggregator.shared-library get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.denim_tranquil_echidna.sh
+        container: qc.ver_banana_apprehensive_dhole
+timeout: 5400
